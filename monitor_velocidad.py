@@ -7,6 +7,7 @@ from datetime import datetime
 import os
 import sys
 import time
+import subprocess
 
 # ──────────────────────────────────────────────
 # CONFIGURACIÓN INICIAL
@@ -54,6 +55,7 @@ def cargar_servidores() -> list:
         st.error(f"Error al cargar servidores: {e}")
         return []
 
+CREATE_NO_WINDOW = 0x08000000
 def ejecutar_prueba(server_id: int) -> dict | str | None:
     if not verificar_speedtest():
         return None
