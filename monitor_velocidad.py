@@ -1,3 +1,6 @@
+"""
+Monitor de Velocidad de Internet
+"""
 import streamlit as st
 import pandas as pd
 import subprocess
@@ -13,6 +16,8 @@ import subprocess
 # CONFIGURACIÓN INICIAL
 # ──────────────────────────────────────────────
 def resource_path(relative_path):
+    """Obtiene la ruta absoluta para recursos internos del EXE."""
+
     try:
         base_path = sys._MEIPASS
     except AttributeError:
@@ -31,24 +36,36 @@ def verificar_speedtest():
     """Verifica la existencia de speedtest.exe."""
     if not os.path.exists(SPEEDTEST_BIN):
         st.error(f"No se encontró speedtest.exe en: {SPEEDTEST_BIN}")
-        st.info("Descarga speedtest-cli desde: https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-win64.zip")
+        st.info("Descarga speedtest-cli desde:"
+                "https://install.speedtest.net/app/"
+                "cli/ookla-speedtest-1.2.0-win64.zip")
         return False
     return True
 def aceptar_licencia():
     """Primero verifica la existencia de speedtest.exe y luego acepta la licencia."""
-    if not verificar_speedtest(): return        
-    subprocess.run([SPEEDTEST_BIN, "--accept-license", "--accept-gdpr"], capture_output=True)
+    if not verificar_speedtest(): return
+    subprocess.run(
+        [SPEEDTEST_BIN,
+         "--accept-license",
+         "--accept-gdpr"],
+        capture_output=True,
+        check=False
+        )
 
 @st.cache_data(ttl=3600)
 def cargar_servidores() -> list:
+    """Carga la lista de servidores"""
     try:
         res = subprocess.run(
             [SPEEDTEST_BIN, "--format=json", "-L", "--accept-license", "--accept-gdpr"],
             capture_output=True, text=True, encoding="utf-8", timeout=20
             )
-        
+
         if "Limit reached" in res.stderr:
-            st.error("Speedtest bloqueó la lista de servidores por exceso de peticiones. Reintenta en unos minutos.")
+            st.error(
+                "Speedtest bloqueó la lista de servidores por exceso "
+                "de peticiones. Reintenta en unos minutos."
+                )
             return []
         return json.loads(res.stdout).get("servers", [])
     except Exception as e:
@@ -57,21 +74,26 @@ def cargar_servidores() -> list:
 
 CREATE_NO_WINDOW = 0x08000000
 def ejecutar_prueba(server_id: int) -> dict | str | None:
+    """Ejecuta una prueba de velocidad utilizando speedtest.exe."""
     if not verificar_speedtest():
         return None
     try:
         res = subprocess.run(
             [SPEEDTEST_BIN, "-s", str(server_id),
              "--format=json", "--accept-license", "--accept-gdpr"],
-            capture_output=True, text=True, timeout=60
-        )
-        
+            capture_output=True,
+            text=True,
+            timeout=60,
+            creationflags=CREATE_NO_WINDOW,
+            check=False
+            )
+
         # Detectar bloqueo por frecuencia
         output = res.stdout + res.stderr
         if "Limit reached" in res.stderr or "Too many requests" in output:
             return "RATE_LIMIT"
-        
-        
+
+
         data = json.loads(res.stdout)
         if not all(k in data for k in ["server", "ping", "download", "upload"]):
             st.error("Respuesta inesperada de speedtest")
@@ -96,6 +118,7 @@ def ejecutar_prueba(server_id: int) -> dict | str | None:
         return None
 
 def guardar_resultado(row: dict):
+    """Guarda el resultado en un archivo CSV."""
     for _ in range(3):
         try:
             pd.DataFrame([row]).to_csv(
@@ -106,6 +129,7 @@ def guardar_resultado(row: dict):
             time.sleep(0.5)
 
 def leer_y_procesar_csv() -> pd.DataFrame:
+    """Lee y procesa el archivo CSV."""
     if not os.path.exists(CSV_PATH):
         return pd.DataFrame()
     try:
@@ -139,7 +163,10 @@ with st.sidebar:
             servidores = cargar_servidores()
             if servidores:
                 st.session_state.servers = servidores
-                st.session_state.dict_serv = {f"{s['name']} ({s['location']})": s["id"] for s in servidores}
+                st.session_state.dict_serv = {
+                    f"{s['name']} ({s['location']})": s["id"]
+                    for s in servidores
+                    }
 
     if st.session_state.servers:
         opciones = list(st.session_state.dict_serv.keys())
@@ -149,8 +176,11 @@ with st.sidebar:
         )
 
         st.divider()
-        st.session_state.intervalo_min = st.slider("Intervalo Rondas (min):", 1, 60, st.session_state.intervalo_min)
-        
+        st.session_state.intervalo_min = st.slider(
+            "Intervalo Rondas (min):", 1, 60,
+            st.session_state.intervalo_min
+            )
+
         c1, c2 = st.columns(2)
         if c1.button("▶️ INICIAR", use_container_width=True):
             st.session_state.bucle_activo = True
@@ -159,9 +189,13 @@ with st.sidebar:
         if c2.button("⏹️ PARAR", use_container_width=True, type="primary"):
             st.session_state.bucle_activo = False
             st.rerun()
-    
+
     if st.button("🗑️ Borrar CSV", use_container_width=True):
-        if os.path.exists(CSV_PATH): os.remove(CSV_PATH)
+        if os.path.exists(CSV_PATH): os.remove(
+            CSV_PATH
+            )
+        """
+        st.session_state.servers = []"""
         st.rerun()
 
 # ──────────────────────────────────────────────
@@ -183,16 +217,34 @@ if not df.empty:
     st.divider()
 
     # Gráfica Acoplada (Descarga)
-    fig_dl = px.line(df, x="Punto_Control", y="Descarga_Mbps", color="Servidor", markers=True, title="📉 Descarga (Mbps) - Agrupado 5min")
+    fig_dl = px.line(
+        df, x="Punto_Control",
+        y="Descarga_Mbps",
+        color="Servidor",
+        markers=True,
+        title="📉 Descarga (Mbps) - Agrupado 5min"
+        )
     fig_dl.update_layout(hovermode="x unified")
     st.plotly_chart(fig_dl, use_container_width=True)
-    
-    fig_dl = px.line(df, x="Punto_Control", y="Carga_Mbps", color="Servidor", markers=True, title="📉 Carga (Mbps) - Agrupado 5min")
+
+    fig_dl = px.line(
+        df, x="Punto_Control",
+        y="Carga_Mbps",
+        color="Servidor",
+        markers=True,
+        title="📉 Carga (Mbps) - Agrupado 5min"
+        )
     fig_dl.update_layout(hovermode="x unified")
     st.plotly_chart(fig_dl, use_container_width=True)
 
     # Gráfica Acoplada (Latencia)
-    fig_lat = px.line(df, x="Punto_Control", y="Latencia_ms", color="Servidor", markers=True, title="📶 Latencia (ms)")
+    fig_lat = px.line(
+        df, x="Punto_Control",
+        y="Latencia_ms",
+        color="Servidor",
+        markers=True,
+        title="📶 Latencia (ms)"
+        )
     fig_lat.update_layout(hovermode="x unified")
     st.plotly_chart(fig_lat, use_container_width=True)
 
@@ -215,14 +267,16 @@ if st.session_state.bucle_activo and st.session_state.servidores_elegidos:
         if sid:
             with st.status(f"Probando {nombre_actual}..."):
                 res = ejecutar_prueba(sid)
-                
+
                 if res == "RATE_LIMIT":
                     st.session_state.proxima_ejecucion = ahora + (30 * 60)
                     st.rerun()
                 elif res:
                     guardar_resultado(res)
                     if idx + 1 >= len(elegidos):
-                        st.session_state.proxima_ejecucion = ahora + (st.session_state.intervalo_min * 60)
+                        st.session_state.proxima_ejecucion = (
+                            ahora + (st.session_state.intervalo_min * 60)
+                            )
                         st.session_state.indice_servidor = 0
                     else:
                         st.session_state.indice_servidor += 1
