@@ -1,0 +1,70 @@
+Fecha_Hora,PC,Servidor,Latencia_ms,Descarga_Mbps,Carga_Mbps,PacketLoss_pct
+29-04-2026 15:00:29,IT02,Tigo Guatemala (Guatemala),3.58,107.7,25.35,0
+29-04-2026 15:00:54,IT02,BlueNet (Guatemala City),77.6,107.27,11.79,6.451612903225806
+29-04-2026 15:01:15,IT02,Claro Guatemala (100G) (Guatemala City),55.36,108.38,24.44,0
+29-04-2026 15:16:15,IT02,Tigo Guatemala (Guatemala),5.41,107.96,24.01,0
+29-04-2026 15:16:39,IT02,BlueNet (Guatemala City),55.62,106.68,26.65,0
+29-04-2026 15:16:55,IT02,Claro Guatemala (100G) (Guatemala City),56.32,107.07,26.78,0
+29-04-2026 15:31:48,IT02,Tigo Guatemala (Guatemala),3.41,107.85,25.34,0
+29-04-2026 15:32:12,IT02,BlueNet (Guatemala City),52.12,107.0,25.63,0
+29-04-2026 15:32:38,IT02,Claro Guatemala (100G) (Guatemala City),52.3,108.86,24.56,0
+29-04-2026 15:45:29,IT02,Tigo Guatemala (Guatemala),2.96,108.01,24.72,0
+29-04-2026 15:45:53,IT02,BlueNet (Guatemala City),53.08,107.08,10.2,0.9174311926605505
+29-04-2026 15:46:17,IT02,Claro Guatemala (100G) (Guatemala City),53.7,107.73,26.82,0
+29-04-2026 16:01:20,IT02,Tigo Guatemala (Guatemala),3.05,108.02,27.03,0
+29-04-2026 16:01:43,IT02,BlueNet (Guatemala City),51.91,105.61,26.36,0
+29-04-2026 16:02:05,IT02,Claro Guatemala (100G) (Guatemala City),52.84,108.59,24.24,0
+29-04-2026 16:17:04,IT02,Tigo Guatemala (Guatemala),2.84,106.1,24.15,0
+29-04-2026 16:17:32,IT02,BlueNet (Guatemala City),52.16,103.34,26.91,0
+29-04-2026 16:17:52,IT02,Claro Guatemala (100G) (Guatemala City),51.46,101.4,21.07,0.5434782608695652
+29-04-2026 16:32:53,IT02,Tigo Guatemala (Guatemala),3.01,107.75,24.03,0
+29-04-2026 16:33:17,IT02,BlueNet (Guatemala City),54.66,107.44,26.42,0
+29-04-2026 16:33:41,IT02,Claro Guatemala (100G) (Guatemala City),53.83,108.62,26.29,0
+29-04-2026 16:48:38,IT02,Tigo Guatemala (Guatemala),3.73,107.91,24.39,0
+29-04-2026 16:49:00,IT02,BlueNet (Guatemala City),51.75,107.93,26.84,0
+29-04-2026 16:49:25,IT02,Claro Guatemala (100G) (Guatemala City),53.84,110.41,26.26,0
+29-04-2026 17:04:24,IT02,Tigo Guatemala (Guatemala),3.29,107.64,26.82,0
+29-04-2026 17:04:45,IT02,BlueNet (Guatemala City),51.87,107.78,26.24,0
+29-04-2026 17:05:10,IT02,Claro Guatemala (100G) (Guatemala City),51.36,109.92,26.25,0
+29-04-2026 17:20:03,IT02,Tigo Guatemala (Guatemala),3.42,107.84,25.52,0
+29-04-2026 17:20:26,IT02,BlueNet (Guatemala City),51.0,107.78,15.2,0
+29-04-2026 17:20:49,IT02,Claro Guatemala (100G) (Guatemala City),51.36,108.35,26.85,0
+29-04-2026 17:35:47,IT02,Tigo Guatemala (Guatemala),3.22,107.97,24.69,0
+29-04-2026 17:36:09,IT02,BlueNet (Guatemala City),51.86,109.08,25.98,0
+29-04-2026 17:36:36,IT02,Claro Guatemala (100G) (Guatemala City),54.42,107.43,25.02,0
+29-04-2026 17:52:31,IT02,Tigo Guatemala (Guatemala),3.35,107.94,26.43,0
+29-04-2026 17:52:57,IT02,BlueNet (Guatemala City),51.72,107.87,26.64,0.7142857142857143
+29-04-2026 17:53:22,IT02,Claro Guatemala (100G) (Guatemala City),52.29,107.73,26.75,0
+29-04-2026 18:08:25,IT02,Tigo Guatemala (Guatemala),3.6,107.92,26.5,0
+29-04-2026 18:08:47,IT02,BlueNet (Guatemala City),50.61,108.25,26.67,2.4539877300613497
+29-04-2026 18:09:04,IT02,Claro Guatemala (100G) (Guatemala City),51.38,108.68,22.85,0
+29-04-2026 18:24:06,IT02,Tigo Guatemala (Guatemala),3.3,107.92,25.32,0
+29-04-2026 18:24:30,IT02,BlueNet (Guatemala City),51.66,107.1,25.37,0
+29-04-2026 18:24:53,IT02,Claro Guatemala (100G) (Guatemala City),50.81,90.73,26.9,0
+29-04-2026 18:40:37,IT02,Tigo Guatemala (Guatemala),2.81,107.84,24.5,0
+29-04-2026 18:40:58,IT02,BlueNet (Guatemala City),52.15,100.59,18.28,0
+29-04-2026 18:41:26,IT02,Claro Guatemala (100G) (Guatemala City),55.56,108.34,26.5,0
+29-04-2026 18:56:21,IT02,Tigo Guatemala (Guatemala),2.8,107.88,24.97,0
+29-04-2026 18:56:39,IT02,BlueNet (Guatemala City),50.71,107.85,26.69,0
+29-04-2026 18:57:07,IT02,Claro Guatemala (100G) (Guatemala City),54.44,84.84,26.63,0
+29-04-2026 19:11:14,IT02,Tigo Guatemala (Guatemala),2.66,107.93,25.0,0
+29-04-2026 19:11:40,IT02,BlueNet (Guatemala City),51.64,108.13,24.52,0
+29-04-2026 19:12:09,IT02,Claro Guatemala (100G) (Guatemala City),51.18,108.76,26.16,0
+29-04-2026 19:27:00,IT02,Tigo Guatemala (Guatemala),3.35,107.89,24.22,0
+29-04-2026 19:27:21,IT02,BlueNet (Guatemala City),51.93,102.55,26.29,0
+29-04-2026 19:27:40,IT02,Claro Guatemala (100G) (Guatemala City),50.7,105.11,27.14,0
+29-04-2026 19:42:43,IT02,Tigo Guatemala (Guatemala),3.29,107.83,24.81,0
+29-04-2026 19:43:08,IT02,BlueNet (Guatemala City),52.45,107.32,13.32,4.878048780487805
+29-04-2026 19:43:29,IT02,Claro Guatemala (100G) (Guatemala City),79.87,107.37,26.71,0
+29-04-2026 19:58:27,IT02,Tigo Guatemala (Guatemala),3.08,107.92,25.62,0
+29-04-2026 19:58:49,IT02,BlueNet (Guatemala City),51.23,100.05,14.42,0
+29-04-2026 19:59:10,IT02,Claro Guatemala (100G) (Guatemala City),55.68,108.25,25.95,0
+29-04-2026 20:14:08,IT02,Tigo Guatemala (Guatemala),2.92,107.93,25.04,0
+29-04-2026 20:14:35,IT02,BlueNet (Guatemala City),51.82,108.68,12.68,0
+29-04-2026 20:15:01,IT02,Claro Guatemala (100G) (Guatemala City),51.55,108.17,26.55,0
+29-04-2026 20:29:56,IT02,Tigo Guatemala (Guatemala),3.09,107.97,24.21,0
+29-04-2026 20:30:21,IT02,BlueNet (Guatemala City),51.18,108.4,10.2,0
+29-04-2026 20:30:47,IT02,Claro Guatemala (100G) (Guatemala City),51.31,110.18,26.15,0
+29-04-2026 20:45:42,IT02,Tigo Guatemala (Guatemala),2.91,107.93,24.46,0
+29-04-2026 20:46:07,IT02,BlueNet (Guatemala City),59.95,108.41,7.94,0.5714285714285714
+29-04-2026 20:46:31,IT02,Claro Guatemala (100G) (Guatemala City),53.99,108.64,26.91,0
